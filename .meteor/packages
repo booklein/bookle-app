@@ -1,0 +1,91 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+# Core packages
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+#blaze
+es5-shim
+email
+http
+reactive-var
+underscore
+ecmascript
+less
+#browser-policy
+service-configuration
+mdg:reload-on-resume
+#accounts-facebook
+#accounts-google
+#accounts-twitter
+accounts-ui
+accounts-password
+useraccounts:bootstrap
+npm-container
+
+# Essential packages
+iron:router
+useraccounts:iron-routing
+meteorhacks:npm
+alanning:roles
+reywood:iron-router-ga
+
+# Utilities
+aldeed:collection2
+aldeed:autoform
+utilities:avatar
+utilities:spin
+#matb33:collection-hooks
+zimme:active-route
+cmather:handlebars-server
+raix:handlebar-helpers
+#dburles:collection-helpers
+reywood:publish-composite
+momentjs:moment
+meteorhacks:fast-render
+meteorhacks:subs-manager
+
+# Mobile / UI
+materialize:materialize@=0.97.0
+chriswessels:slideout
+chriswessels:hammer
+chriswessels:back-behaviour
+255kb:cordova-keyboard
+raix:push
+hedcet:cordova-google-plus-native-sign-in
+particle4dev:cordova-fb
+juliancwirko:s-alert
+juliancwirko:s-alert-stackslide
+imsky:holder
+
+# Integration
+miro:mailchimp
+cunneen:mailgun
+peerlibrary:aws-sdk
+
+# Testing
+# sanjo:jasmine
+# velocity:html-reporter
+
+# Potentially useful
+# percolate:synced-cron
+# lookback:seo
+# https://atmospherejs.com/socialize
+# viloma:user-feedback
+
+

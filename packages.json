@@ -1,0 +1,5 @@
+{
+  "aws-lib": "0.3.0",
+  "elasticsearch": "8.2.0",
+  "predictionio-driver": "0.3.0"
+}

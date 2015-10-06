@@ -1,0 +1,188 @@
+<template name="recommendBooks">
+  <div class="col s12">
+    <ul class="collection">
+      {{#each books}}
+        <li class="collection-item avatar book" id="li-{{_id}}" style="width:100%">
+          <img src="{{thumb}}" alt="" class="circle">
+          <span class="title">{{title}}</span>
+          <p style="font-size:small">{{author}}, {{publisher}}</p> 
+          <span class="secondary-content ">
+          <span class="chip">Rs 120 {{price}}</span>
+          {{#if available}}
+            <i id="add-{{_id}}" class="material-icons add-to-cart">add</i>
+          {{/if}}
+          {{#if notInFavourites}}
+            <i id="fav-{{_id}}" class="material-icons add-to-fav">favorite</i>
+          {{/if}}
+          </span>
+        </li>      
+      {{/each}}
+    </ul>
+    {{#if Template.subscriptionsReady}}
+      {{#if hasMoreBooks}}
+        <a class="load-more" href="#">Load More</a>
+      {{/if}}
+    {{else}}
+      <div class="loading">{{>spinner}}</div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="browseBooks">
+  <div class="col s12 browseCat">
+    <i class="material-icons prefix">plane</i>
+    <h6 class="left">{{category}}</h6><i class="material-icons right">arrow_drop_down</i>
+  </div>  
+  <div class="collection col s12">
+    {{#if browseActive}}
+      {{> browseCategories}}
+    {{/if}}
+  </div>
+  <div class="col s12">
+    {{#if noBooks}}
+      <p>No books in the given collection</p>
+    {{/if}}
+    <ul class="collection">
+      {{#each books}}
+        <li class="collection-item avatar" id="li-{{_id}}"><a href="/book/{{_id}}">
+          <img src="{{thumb}}" alt="" class="circle">
+          <span class="title">{{title}}</span>
+          <p>{{author}}, {{publisher}}</p> <div class="chip">Rs {{price}}</div>
+          {{#if available}}
+            <span class="secondary-content" id="add-{{_id}}"><i class="material-icons">add</i></span>
+          {{/if}}
+          {{#if notInFavourites}}
+            <span class="secondary-content" id="fav-{{_id}}"><i class="material-icons">favorite</i></span>
+          {{/if}}
+        </a></li>      
+      {{/each}}
+    </ul>
+    {{#if Template.subscriptionsReady}}
+      {{#if hasMoreBooks}}
+        <a class="load-more" href="#">Load More</a>
+      {{/if}}
+    {{else}}
+      <div class="loading">{{>spinner}}</div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="browseCategories">
+  <ul class="collapsible" data-collapsible="accordion">
+    {{#each categories}}
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">arrow_drop_down</i>
+        {{name}}
+        <i class="material-icons right browseCat" id="{{_id}}">send</i>
+      </div>
+      {{#if subCatExists}}
+      <div class="collapsible-body">
+        {{#each subCat}}
+          {{> browseCategories}}
+        {{/each}}
+      </div>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="searchBooks">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">search</i>
+    <input id="searchbox" type="text" class="validate" placeholder="Search for books..." value="{{searchString}}">
+  </div>  
+  <div class="collection col s12">
+    {{#if searchActive}}
+      {{#each searchStrs}}
+        <a href="#!" id="{{str}}" class="collection-item">{{str}}</a>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class="col s12">
+    {{#if noBooks}}
+      <p>No books matched your search</p>
+    {{/if}}
+    <ul class="collection">
+      {{#each books}}
+        <li class="collection-item avatar" id="li-{{_id}}"><a href="/book/{{_id}}">
+          <img src="{{thumb}}" alt="" class="circle">
+          <span class="title">{{title}}</span>
+          <p>{{author}}, {{publisher}}</p> <div class="chip">Rs {{price}}</div>
+          {{#if available}}
+            <span class="secondary-content" id="add-{{_id}}"><i class="material-icons">add</i></span>
+          {{/if}}
+          {{#if notInFavourites}}
+            <span class="secondary-content" id="fav-{{_id}}"><i class="material-icons">favorite</i></span>
+          {{/if}}
+        </a></li>      
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="favourites">
+  <div class="col s12">
+    {{#if noBooks}}
+      <p>No favourites yet. Tap on the heart next to a book to add it to your favourites</p>
+    {{/if}}
+    <ul class="collection">
+      {{#each books}}
+        <li class="collection-item avatar" id="li-{{_id}}"><a href="/book/{{_id}}">
+          <img src="{{thumb}}" alt="" class="circle">
+          <span class="title">{{title}}</span>
+          <p>{{author}}, {{publisher}}</p> <div class="chip">Rs {{price}}</div>
+          {{#if available}}
+            <span class="secondary-content" id="add-{{_id}}"><i class="material-icons">add</i></span>
+          {{/if}}
+          <span class="secondary-content" id="remove-{{_id}}"><i class="material-icons">cancel</i></span>
+        </a></li>      
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="cart">
+  <div class="col s12">
+    <ul class="collection">
+      {{#each books}}
+        <li class="collection-item avatar">
+          <img src="{{thumb}}" alt="" class="circle">
+          <span class="title">{{title}}</span>
+          <div class="chip">Rs {{price}}</div>
+          <a href="#!" class="secondary-content" id="remove-{{_id}}"><i class="material-icons">cancel</i></a>
+        </li>
+      {{/each}}
+      <li class="collection-item">
+        <span class="title">Total</span>
+        <div class="chip right" style="font-size:large">Rs {{total}}</div>
+      </li>
+      <li class="collection-item">
+        <span class="title">Shipping</span>
+        <p>Shipping details details</p>
+        <div class="chip right" style="font-size:large">Rs {{shipping}}</div>
+      </li>
+      <li class="collection-item">
+        <span class="title">Discounts</span>
+        <p>Discount details</p>
+        <div class="chip right" style="font-size:large">Rs -{{discount}}</div>
+      </li>
+      <li class="collection-item">
+        <span class="title">Grand Total</span>
+        <div class="chip right" style="font-size:x-large">Rs {{grandtotal}}</div>
+      </li>
+      <li class="collection-item">
+        <span class="title">Ship to</span>
+        <p>Default address</p>
+        <a class="waves-effect waves-light btn right">Change</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col s12">
+    <a class="waves-effect waves-light btn"><i class="material-icons left">Back</i>button</a>
+    <a class="waves-effect waves-light btn"><i class="material-icons right">Pay</i>button</a>
+  </div>
+</template>
+
+

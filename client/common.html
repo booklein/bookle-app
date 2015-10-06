@@ -1,0 +1,109 @@
+<template name="appLayout">
+      {{> _header}}
+    <div class="row">
+    </div>
+    <div class="row">
+      {{> _message}}
+    </div>
+    <div class="row">
+      {{> yield}}
+    </div>
+    <div class="row">
+    </div>
+      {{> _footer}}
+</template>
+
+<template name="book">
+  <h1>Book Details</h1>
+  <h2>{{_id}}</h2>
+</template>
+
+<template name="_header">
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="{{pathFor route='notifications'}}">Notifications<span class="new badge">{{notificationsCount}}</span></a></li>
+    <li><a href="{{pathFor route='profile'}}">Edit Profile</a></li>
+    <li><a href="{{pathFor route='preferences'}}">Preferences</a></li>
+  </ul>
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li><a href="{{pathFor route='recommendBooks'}}"><i class="material-icons">home</i></a></li>
+          <li><a href="{{pathFor route='browseBooks'}}"><i class="material-icons">view_module</i></a></li>
+          <li><a href="{{pathFor route='searchBooks'}}"><i class="material-icons">search</i></a></li>
+          <li><a href="{{pathFor route='favourites'}}"><i class="material-icons">favorite</i></a></li>
+        </ul>
+        <ul class="right">
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">account_box</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</template>
+
+<template name="_footer">
+  <footer class="page-footer">
+    <ul class="collection">
+      <li class="collection-item">
+        <span class="title">{{countInCart}} books</span>
+        Rs {{totalPrice}}
+        <a href="{{pathFor route='cart'}}" class="secondary-content">Checkout<i class="material-icons">send</i></a>
+      </li>
+    </ul>
+  </footer>
+</template>
+
+<template name="_message">
+  {{#if msgShow}}
+    <div class="col s12">
+      <ul class="collection">
+        <li class="collection-item">
+          <span class="title">{{msgTitle}} books</span>
+          <p>Rs {{msg}}</p>
+          <a href="#!" class="secondary-content" id="cancelmsg"><i class="material-icons">cancel</i></a>
+        </li>
+      </ul>
+    </div>
+  {{/if}}
+</template>
+
+<template name="loading">
+  <div class="loading">
+    <i class="fa fa-circle-o-notch fa-3x fa-spin"></i>
+  </div>
+</template>
+
+<template name="notFound">
+  <div class="template-not-found">
+    <div class="container text-center">
+      <h1>Not Found</h1>
+      <p>
+        That page doesn't exist!
+      </p>
+    </div>
+  </div>
+</template>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico?v=1">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png?v=1">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png?v=1">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png?v=1">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png?v=1">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png?v=1">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png?v=1">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png?v=1">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png?v=1">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-192x192.png?v=1" sizes="192x192">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-160x160.png?v=1" sizes="160x160">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png?v=1" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png?v=1" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png?v=1" sizes="32x32">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="msapplication-TileColor" content="#27374a">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png?v=1">
+  <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+</head>
